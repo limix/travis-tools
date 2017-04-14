@@ -12,6 +12,10 @@ curl -O ${URL_PREFIX}/before-install.sh
 chmod +x before-install.sh
 curl -O ${URL_PREFIX}/build-wheels.sh
 chmod +x build-wheels.sh
+curl -O ${URL_PREFIX}/install-clang38.sh
+chmod +x install-clang38.sh
+curl -O ${URL_PREFIX}/install-llvmlite.sh
+chmod +x install-llvmlite.sh
 curl -O ${URL_PREFIX}/install-pandoc.sh
 chmod +x install-pandoc.sh
 curl -O ${URL_PREFIX}/prepare-for-osx.sh

@@ -4,6 +4,11 @@ set -e -x
 if [ -z ${DOCKER_IMAGE+x} ]; then
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         travis/prepare-for-osx.sh
+    else
+        if [ "${NUMBA}" == "true" ]; then
+            travis/install-clang38.sh;
+            travis/install-llvmlite.sh;
+        fi
     fi
     travis/install-pandoc.sh python
 else
