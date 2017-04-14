@@ -3,9 +3,9 @@ set -e -x
 
 if [ -z ${DOCKER_IMAGE+x} ]; then
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        travis/prepare_for_osx.sh
+        travis/prepare-for-osx.sh
     fi
-    travis/install_pandoc.sh
+    travis/install-pandoc.sh python
 else
     docker pull $DOCKER_IMAGE
 fi

@@ -6,14 +6,14 @@ if ! [ -z ${DOCKER_IMAGE+x} ]; then
     ls
     ls wheelhouse/
     pip install twine
-    twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/pandas_plink*.whl \
+    twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/${PKG_NAME}*.whl \
           -u dhorta -p ${PYPI_PASSWORD}
 else
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         ls dist
         source ~/.venv/bin/activate
         pip install twine
-        twine upload ${TRAVIS_BUILD_DIR}/dist/pandas_plink*.whl \
+        twine upload ${TRAVIS_BUILD_DIR}/dist/${PKG_NAME}*.whl \
               -u dhorta -p ${PYPI_PASSWORD}
     fi
 fi
