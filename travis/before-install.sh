@@ -7,5 +7,5 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     fi
     travis/install-pandoc.sh python
 else
-    docker pull $DOCKER_IMAGE -q
+    docker pull $DOCKER_IMAGE
 fi
