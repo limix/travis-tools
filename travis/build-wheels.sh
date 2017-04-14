@@ -9,6 +9,7 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
+    "${PYBIN}/pip" install numpy cython -q
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/  -q
 done
 
@@ -24,7 +25,7 @@ for PYBIN in /opt/python/*/bin/; do
         continue
     fi
     "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
-    "${PYBIN}/pip" install pytest numpy cython -q
+    "${PYBIN}/pip" install pytest -q
     cd "$HOME"
     /io/travis/test.sh "${PYBIN}/python"
 done
