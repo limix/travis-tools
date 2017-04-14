@@ -2,7 +2,7 @@
 set -e -x
 
 if ! [ -z ${DOCKER_IMAGE+x} ]; then
-    docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} PKG_NAME=${PKG_NAME} \
+    docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} -e PKG_NAME=${PKG_NAME} \
         --rm -v `pwd`:/io $DOCKER_IMAGE /bin/bash
     pip install twine -q
     twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/${PKG_NAME}*.whl \
