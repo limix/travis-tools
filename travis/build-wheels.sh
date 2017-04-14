@@ -9,7 +9,7 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" wheel /io/ -w wheelhouse/
+    "${PYBIN}/pip" wheel /io/ -w wheelhouse/  -q
 done
 
 # Bundle external shared libraries into the wheels
@@ -23,8 +23,8 @@ for PYBIN in /opt/python/*/bin/; do
         || [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse
-    "${PYBIN}/pip" install pytest
+    "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
+    "${PYBIN}/pip" install pytest  -q
     cd "$HOME"
     travis/test.sh "${PYBIN}/python"
 done
