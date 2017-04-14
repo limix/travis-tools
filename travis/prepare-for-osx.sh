@@ -3,6 +3,7 @@ set -e -x
 
 brew update || brew update
 brew install pandoc libffi
+brew install homebrew/science/hdf5
 
 git clone --depth 1 https://github.com/yyuu/pyenv.git ~/.pyenv
 
