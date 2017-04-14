@@ -24,7 +24,7 @@ for PYBIN in /opt/python/*/bin/; do
         continue
     fi
     "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
-    "${PYBIN}/pip" install pytest  -q
+    "${PYBIN}/pip" install pytest numpy -q
     cd "$HOME"
     /io/travis/test.sh "${PYBIN}/python"
 done
