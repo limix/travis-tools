@@ -3,7 +3,7 @@ set -e -x
 
 mkdir -p travis
 
-$URL_PREFIX=https://raw.githubusercontent.com/limix/travis-tools/master/travis/
+URL_PREFIX=https://raw.githubusercontent.com/limix/travis-tools/master/travis/
 
 pushd travis
 curl -O ${URL_PREFIX}/after-success.sh
