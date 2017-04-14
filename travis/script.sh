@@ -13,5 +13,5 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     fi
     travis/test.sh python
 else
-    docker run --rm -v `pwd`:/io $DOCKER_IMAGE /io/travis/build_wheels.sh
+    docker run --rm -v `pwd`:/io $DOCKER_IMAGE /io/travis/build-wheels.sh
 fi
