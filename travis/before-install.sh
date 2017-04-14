@@ -10,6 +10,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
             travis/install-llvmlite.sh;
         fi
     fi
+    pip install numpy cython -q
     travis/install-pandoc.sh python
 else
     docker pull $DOCKER_IMAGE
