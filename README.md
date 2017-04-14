@@ -1,4 +1,3 @@
 # travis-tools
 
-curl -O https://github.com/limix/travis-tools/blob/master/get-travis-tools.sh
-./get-travis-tools.sh
+travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)

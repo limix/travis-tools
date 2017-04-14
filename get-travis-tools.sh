@@ -3,13 +3,15 @@ set -e -x
 
 mkdir -p travis
 
+$URL_PREFIX=https://raw.githubusercontent.com/limix/travis-tools/master/travis/
+
 pushd travis
-curl -O https://github.com/limix/travis-tools/blob/master/travis/after-success.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/before-install.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/build-wheels.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/deploy-wheels.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/install-pandoc.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/prepare-for-osx.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/script.sh
-curl -O https://github.com/limix/travis-tools/blob/master/travis/test.sh
+curl -O ${URL_PREFIX}/after-success.sh
+curl -O ${URL_PREFIX}/before-install.sh
+curl -O ${URL_PREFIX}/build-wheels.sh
+curl -O ${URL_PREFIX}/deploy-wheels.sh
+curl -O ${URL_PREFIX}/install-pandoc.sh
+curl -O ${URL_PREFIX}/prepare-for-osx.sh
+curl -O ${URL_PREFIX}/script.sh
+curl -O ${URL_PREFIX}/test.sh
 popd
