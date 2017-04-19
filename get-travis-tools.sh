@@ -14,6 +14,8 @@ curl -O ${URL_PREFIX}/build-wheels.sh
 chmod +x build-wheels.sh
 curl -O ${URL_PREFIX}/install-clang38.sh
 chmod +x install-clang38.sh
+curl -O ${URL_PREFIX}/install-hdf5.sh
+chmod +x install-hdf5.sh
 curl -O ${URL_PREFIX}/install-llvmlite.sh
 chmod +x install-llvmlite.sh
 curl -O ${URL_PREFIX}/install-pandoc.sh
