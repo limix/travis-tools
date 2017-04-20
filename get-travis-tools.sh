@@ -26,4 +26,8 @@ curl -O ${URL_PREFIX}/script.sh
 chmod +x script.sh
 curl -O ${URL_PREFIX}/test.sh
 chmod +x test.sh
+curl -O ${URL_PREFIX}/test-before-install.sh
+chmod +x test-before-install.sh
+curl -O ${URL_PREFIX}/test-before-install-manylinux.sh
+chmod +x test-before-install-manylinux.sh
 popd
