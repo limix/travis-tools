@@ -10,7 +10,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
             travis/install-llvmlite.sh;
         fi
     fi
-    pip install $(PY_DEPS) -q
+    eval pip install "${PY_DEPS}" -q
     travis/install-pandoc.sh python
 else
     docker pull $DOCKER_IMAGE

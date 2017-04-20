@@ -8,6 +8,6 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install $(PY_DEPS) -q
+    eval "${PYBIN}/pip" install "${PY_DEPS}" -q
     "${PYBIN}/python" setup.py test
 done
