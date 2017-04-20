@@ -3,8 +3,8 @@ set -e -x
 
 yum install -y atlas-devel libffi libffi-devel
 
-/io/travis/install-hdf5.sh
-export HDF5_DIR=/hdf5
+# /io/travis/install-hdf5.sh
+# export HDF5_DIR=/hdf5
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
