@@ -30,4 +30,4 @@ python -m pip install --user virtualenv
 
 python -m virtualenv ~/.venv
 source ~/.venv/bin/activate
-pip install wheel setuptools pytest numpy cython scipy -q
+pip install wheel setuptools pytest "${PY_DEPS}" -q
