@@ -5,6 +5,8 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     if [[ $TRAVIS_OS_NAME != 'linux' ]]; then
         source ~/.venv/bin/activate
     fi
+    pip install setuptools --upgrade -q
+    pip install cython --upgrade -q
     eval pip install "${PY_DEPS}" -q
     python setup.py test
 else

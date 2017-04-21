@@ -10,6 +10,8 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
             travis/install-llvmlite.sh;
         fi
     fi
+    pip install setuptools --upgrade -q
+    pip install cython --upgrade -q
     eval pip install "${PY_DEPS}" -q
     travis/install-pandoc.sh python
 else

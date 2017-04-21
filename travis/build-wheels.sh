@@ -12,6 +12,8 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
+    "${PYBIN}/pip" install setuptools --upgrade -q
+    "${PYBIN}/pip" install cython --upgrade -q
     eval "${PYBIN}/pip" install "${PY_DEPS}" -q
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/  -q
 done
