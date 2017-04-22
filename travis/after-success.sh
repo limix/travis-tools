@@ -3,7 +3,7 @@ set -e -x
 
 if ! [ -z ${DOCKER_IMAGE+x} ]; then
     docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} -e PKG_NAME=${PKG_NAME} \
-        -e PY_DEPS=${PY_DEPS} --rm -v `pwd`:/io $DOCKER_IMAGE /bin/bash
+        -e PY_DEPS="${PY_DEPS}" --rm -v `pwd`:/io $DOCKER_IMAGE /bin/bash
     pip install setuptools --upgrade -q
     pip install cython --upgrade -q
     eval pip install twine "${PY_DEPS}" -q
