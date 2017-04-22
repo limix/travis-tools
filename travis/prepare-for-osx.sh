@@ -32,4 +32,4 @@ python -m virtualenv ~/.venv
 source ~/.venv/bin/activate
 pip install setuptools --upgrade -q
 pip install cython --upgrade -q
-eval pip install wheel pytest "${PY_DEPS}" -q
+eval pip install wheel pytest -q
