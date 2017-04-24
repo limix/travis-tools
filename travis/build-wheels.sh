@@ -25,6 +25,7 @@ for PYBIN in /opt/python/*/bin; do
     fi
     "${PYBIN}/pip" install setuptools --upgrade -q
     "${PYBIN}/pip" install cython --upgrade -q
+    "${PYBIN}/pip" install numpy --upgrade -q
     # eval "${PYBIN}/pip" install "${PY_DEPS}" -q
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/  -q
 done
