@@ -1,10 +1,21 @@
 #!/bin/bash
 set -e -x
 
-yum install -y atlas-devel libffi libffi-devel
+yum install -y atlas-devel libffi libffi-devel ccache
 
-# /io/travis/install-hdf5.sh
-# export HDF5_DIR=/hdf5
+if [ ! -f /root/bin/ccache ]; then
+    mkdir /root/bin
+    export PATH=/root/bin:$PATH
+
+    cp /usr/bin/ccache /root/bin/
+
+    ln -s ccache /root/bin/gcc
+    ln -s ccache /root/bin/g++
+    ln -s ccache /root/bin/cc
+    ln -s ccache /root/bin/c++
+
+    hash -r
+fi
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
