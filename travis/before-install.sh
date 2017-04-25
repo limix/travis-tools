@@ -10,7 +10,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     which pip
     pip install wheel setuptools cython numpy --upgrade
 
-    travis/install-pandoc.sh python
+    source travis/install-pandoc.sh
 
     if [ "${LIKNORM}" == "true" ]; then
         travis/install-liknorm.sh
