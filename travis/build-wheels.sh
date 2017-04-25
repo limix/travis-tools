@@ -23,10 +23,7 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install setuptools --upgrade -q
-    "${PYBIN}/pip" install cython --upgrade -q
-    "${PYBIN}/pip" install numpy --upgrade -q
-    # eval "${PYBIN}/pip" install "${PY_DEPS}" -q
+    "${PYBIN}/pip" install setuptools cython numpy --upgrade -q
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
@@ -35,14 +32,13 @@ for whl in wheelhouse/${PKG_NAME}*.whl; do
     auditwheel repair "$whl" -w /io/wheelhouse/
 done
 
-# Install packages and test
+# Install and test packages
 for PYBIN in /opt/python/*/bin/; do
     if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] \
         || [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
     "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
-    "${PYBIN}/pip" install pytest -q
     cd "$HOME"
-    /io/travis/test.sh "${PYBIN}/python"
+    /io/travis/pip-test.sh "${PYBIN}"
 done
