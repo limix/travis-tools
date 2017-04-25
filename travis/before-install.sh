@@ -6,8 +6,6 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
         source travis/prepare-for-osx.sh
     fi
 
-    which python
-    which pip
     pip install wheel setuptools cython numpy --upgrade
 
     source travis/install-pandoc.sh
