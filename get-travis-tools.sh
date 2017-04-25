@@ -18,6 +18,8 @@ curl -O ${URL_PREFIX}/install-hdf5.sh
 chmod +x install-hdf5.sh
 curl -O ${URL_PREFIX}/install-llvmlite.sh
 chmod +x install-llvmlite.sh
+curl -O ${URL_PREFIX}/install-liknorm.sh
+chmod +x install-liknorm.sh
 curl -O ${URL_PREFIX}/install-pandoc.sh
 chmod +x install-pandoc.sh
 curl -O ${URL_PREFIX}/prepare-for-osx.sh

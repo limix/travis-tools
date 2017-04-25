@@ -14,6 +14,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     pip install cython --upgrade -q
     eval pip install "${PY_DEPS}" -q
     travis/install-pandoc.sh python
+    travis/install-liknorm.sh
 else
     docker pull $DOCKER_IMAGE
 fi
