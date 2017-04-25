@@ -1,26 +1,26 @@
 #!/bin/bash
 set -e -x
 
-if ! [ -z ${DOCKER_IMAGE+x} ]; then
-    docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} -e PKG_NAME=${PKG_NAME} \
-        -e LIKNORM="${LIKNORM}" -e PY_DEPS="${PY_DEPS}" --rm -v \
-        `pwd`:/io $DOCKER_IMAGE /bin/bash
+if ! [ -z ${TRAVIS_TAG+x} ]; then
 
-    pip install setuptools twine numpy cython --upgrade -q
+    if ! [ -z ${DOCKER_IMAGE+x} ]; then
+        docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} -e PKG_NAME=${PKG_NAME} \
+            -e LIKNORM="${LIKNORM}" -e PY_DEPS="${PY_DEPS}" --rm -v \
+            `pwd`:/io $DOCKER_IMAGE /bin/bash
 
-    # eval pip install "${PY_DEPS}" -q
-
-    twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/${PKG_NAME}*.whl \
-          -u dhorta -p ${PYPI_PASSWORD} || true
-else
-    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-
-        source ~/.venv/bin/activate
         pip install setuptools twine numpy cython --upgrade -q
 
-        # eval pip install "${PY_DEPS}" -q
-
-        twine upload ${TRAVIS_BUILD_DIR}/dist/${PKG_NAME}*.whl \
+        twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/${PKG_NAME}*.whl \
               -u dhorta -p ${PYPI_PASSWORD} || true
+    else
+        if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+
+            source ~/.venv/bin/activate
+            pip install setuptools twine numpy cython --upgrade -q
+
+            twine upload ${TRAVIS_BUILD_DIR}/dist/${PKG_NAME}*.whl \
+                  -u dhorta -p ${PYPI_PASSWORD} || true
+        fi
     fi
+
 fi
