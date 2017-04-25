@@ -3,7 +3,7 @@ set -e -x
 
 if [ -z ${DOCKER_IMAGE+x} ]; then
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        travis/prepare-for-osx.sh
+        source travis/prepare-for-osx.sh
     fi
 
     which python
