@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e -x
 
+env
+
 if [ ${TRAVIS_BRANCH} = "master" ] && (! [ -z ${TRAVIS_TAG} ] ); then
 
     if ! [ -z ${DOCKER_IMAGE+x} ]; then
