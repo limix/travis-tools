@@ -34,3 +34,6 @@ source ~/.venv/bin/activate
 # matplotlib does not like travis osx
 mkdir -p ~/.matplotlib
 echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
+
+which python
+which pip
