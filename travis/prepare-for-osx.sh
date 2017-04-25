@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x
 
-brew update || brew update
+brew update > /dev/null || brew update > /dev/null
 brew install pandoc libffi
 brew install homebrew/science/hdf5
 
