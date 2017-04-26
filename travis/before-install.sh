@@ -10,8 +10,8 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 
     pip install wheel setuptools cython numpy --upgrade -q
 
-    if ! [ -z ${PY_DEPS} ]; then
-        eval pip install ${PY_DEPS} --upgrade -q
+    if ! [ -z "${PY_DEPS}" ]; then
+        eval pip install "${PY_DEPS}" --upgrade -q
     fi
 
     source travis/install-pandoc.sh
