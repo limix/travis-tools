@@ -33,8 +33,11 @@ ls /io/wheelhouse/ || true
 (shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*-any.whl)
 (shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*-any.whl)
 
+shopt -s nullglob
 files1=(/io/wheelhouse/${PKG_NAME}*.whl)
 files2=(wheelhouse/${PKG_NAME}*.whl)
+shopt -u nullglob
+
 if [ ${#files1[@]} -gt 0 ] && [ ${#files2[@]} -gt 0 ]; then
 
     # Bundle external shared libraries into the wheels
