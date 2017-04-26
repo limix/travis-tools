@@ -17,6 +17,10 @@ if [ ! -f /root/bin/ccache ]; then
     hash -r
 fi
 
+if [ "${LIKNORM}" == "true" ]; then
+    source /io/travis/install-liknorm.sh
+fi
+
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] || \
