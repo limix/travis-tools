@@ -27,28 +27,27 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
-shopt -s nullglob
+(shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*none-any.whl)
+(shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl)
 
-rm -f wheelhouse/${PKG_NAME}*none-any.whl
-rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl
+files=(/io/wheelhouse/${PKG_NAME}*.whl)
+if [ ${#files[@]} -gt 0 ]; then
 
-# Bundle external shared libraries into the wheels
-for whl in wheelhouse/${PKG_NAME}*.whl; do
-    auditwheel repair "$whl" -w /io/wheelhouse/
-done
+    # Bundle external shared libraries into the wheels
+    for whl in wheelhouse/${PKG_NAME}*.whl; do
+        auditwheel repair "$whl" -w /io/wheelhouse/
+    done
 
-# Install and test packages
-for PYBIN in /opt/python/*/bin/; do
-    if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] \
-        || [[ $PYBIN == *"p34"* ]]; then
-        continue
-    fi
-
-    files=(/io/wheelhouse/${PKG_NAME}*.whl)
-    if [ ${#files[@]} -gt 0 ]; then
+    # Install and test packages
+    for PYBIN in /opt/python/*/bin/; do
+        if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] \
+            || [[ $PYBIN == *"p34"* ]]; then
+            continue
+        fi
 
         "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
         cd "$HOME"
         /io/travis/pip-test.sh "${PYBIN}"
-    fi
-done
+    done
+
+fi
