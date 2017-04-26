@@ -12,7 +12,7 @@ eval "$(pyenv init -)"
 
 case "${PYENV}" in
     py27)
-        curl -O https://bootstrap.pypa.io/get-pip.py "$HOME/.download"
+        curl -o "$HOME/.download/get-pip.py" https://bootstrap.pypa.io/get-pip.py
         python "$HOME/.download/get-pip.py" --user
         ;;
     py35)
