@@ -27,7 +27,7 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
-rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl
+rm -f wheelhouse/${PKG_NAME}*none-any.whl
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/${PKG_NAME}*.whl; do
@@ -40,7 +40,12 @@ for PYBIN in /opt/python/*/bin/; do
         || [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
-    cd "$HOME"
-    /io/travis/pip-test.sh "${PYBIN}"
+
+    files=(/io/wheelhouse/${PKG_NAME}*.whl)
+    if [ ${#files[@]} -gt 0 ]; then
+
+        "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
+        cd "$HOME"
+        /io/travis/pip-test.sh "${PYBIN}"
+    fi
 done
