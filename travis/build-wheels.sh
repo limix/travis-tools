@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x
 
-yum install -y atlas-devel libffi libffi-devel ccache
+yum install -y atlas-devel libffi libffi-devel ccache cmake
 
 if [ ! -f /root/bin/ccache ]; then
     mkdir /root/bin
