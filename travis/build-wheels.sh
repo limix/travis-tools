@@ -27,7 +27,7 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
-rm -f "/io/wheelhouse/${PKG_NAME}*none-any.whl"
+rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/${PKG_NAME}*.whl; do
