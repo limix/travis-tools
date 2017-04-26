@@ -27,8 +27,8 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
-ls wheelhouse/
-ls /io/wheelhouse/
+ls wheelhouse/ || true
+ls /io/wheelhouse/ || true
 
 (shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*-any.whl)
 (shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*-any.whl)
