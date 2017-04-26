@@ -27,8 +27,11 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
-(shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*none-any.whl)
-(shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl)
+ls wheelhouse/
+ls /io/wheelhouse/
+
+(shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*-any.whl)
+(shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*-any.whl)
 
 files1=(/io/wheelhouse/${PKG_NAME}*.whl)
 files2=(wheelhouse/${PKG_NAME}*.whl)
