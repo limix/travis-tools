@@ -21,7 +21,7 @@ fi
 for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN == *"p36"* ]]; then
         "${PYBIN}/pip" install cython setuptools numpy --upgrade -q
-        # eval "${PYBIN}/pip" install "${PY_DEPS}" -q
+        eval "${PYBIN}/pip" install "${PY_DEPS}" --upgrade -q
         pushd /io
         "${PYBIN}/python" setup.py test
         popd
