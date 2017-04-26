@@ -17,7 +17,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     source travis/install-pandoc.sh
 
     if [ "${LIKNORM}" == "true" ]; then
-        travis/install-liknorm.sh
+        source travis/install-liknorm.sh
     fi
 else
     docker pull $DOCKER_IMAGE

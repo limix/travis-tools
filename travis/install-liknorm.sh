@@ -2,7 +2,7 @@
 set -e -x
 
 pushd .
-git clone https://github.com/glimix/liknorm
+git clone https://github.com/limix/liknorm.git
 cd liknorm
 mkdir build
 cd build
