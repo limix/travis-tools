@@ -2,7 +2,12 @@
 set -e -x
 
 brew update > /dev/null
-brew install libffi homebrew/science/hdf5
+
+brew install libffi > /dev/null
+
+if [ "$HDF5" == "true" ]; then
+    brew install homebrew/science/hdf5 > /dev/null
+fi
 
 git clone --depth 1 https://github.com/yyuu/pyenv.git ~/.pyenv
 
