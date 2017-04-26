@@ -12,8 +12,11 @@ eval "$(pyenv init -)"
 
 case "${PYENV}" in
     py27)
-        curl -o "$HOME/.download/get-pip.py" https://bootstrap.pypa.io/get-pip.py
-        python "$HOME/.download/get-pip.py" --user
+        getbin="$HOME/.download/get-pip.py"
+        if [ ! -f "$getbin" ]; then
+            curl -o "$getbin" https://bootstrap.pypa.io/get-pip.py
+            python "$getbin" --user
+        fi
         ;;
     py35)
         pyenv install 3.5.2
