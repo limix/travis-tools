@@ -2,8 +2,8 @@
 set -e -x
 
 pushd .
-git clone https://github.com/limix/liknorm.git
-cd liknorm
+git clone https://github.com/limix/liknorm.git liknorm-build
+cd liknorm-build
 mkdir build
 cd build
 cmake ..
