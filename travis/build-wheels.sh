@@ -27,6 +27,8 @@ for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
+shopt -s nullglob
+
 rm -f wheelhouse/${PKG_NAME}*none-any.whl
 rm -f /io/wheelhouse/${PKG_NAME}*none-any.whl
 
