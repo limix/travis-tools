@@ -10,7 +10,7 @@ cmake ..
 make
 make test
 sudo make install
-if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
     sudo ldconfig
 fi
 popd

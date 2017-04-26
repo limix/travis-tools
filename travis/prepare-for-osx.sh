@@ -9,6 +9,7 @@ if [ "$HDF5" == "true" ]; then
     brew install homebrew/science/hdf5 > /dev/null
 fi
 
+rm -rf ~/.pyenv || true
 git clone --depth 1 https://github.com/yyuu/pyenv.git ~/.pyenv
 
 PYENV_ROOT="$HOME/.pyenv"
