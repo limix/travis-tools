@@ -9,8 +9,19 @@ cd build
 cmake ..
 make
 make test
-sudo make install
+
+set +e
+sudo &> /dev/null
+err="$?"
+if [[ "$err" == "0" ]]; then
+    SUDO="sudo"
+else
+    SUDO=""
+fi
+set -e
+
+eval "$SUDO" make install
 if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
-    sudo ldconfig
+    eval "$SUDO" ldconfig
 fi
 popd
