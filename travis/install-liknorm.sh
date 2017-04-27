@@ -26,3 +26,4 @@ if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
     eval "$SUDO" ldconfig
 fi
 popd
+rm -rf liknorm-build || true
