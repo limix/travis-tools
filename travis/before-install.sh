@@ -16,7 +16,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 
     source travis/install-pandoc.sh
 
-    if [ "${LIKNORM}" == "true" ]; then
+    if [[ "${LIKNORM}" == "true" ]]; then
         source travis/install-liknorm.sh
     fi
 else
