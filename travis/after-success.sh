@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e -x
 
+if [ -z "${PRJ_NAME}" ]; then
+    export PRJ_NAME="${PKG_NAME}"
+fi
+
 if ! [ -z ${TRAVIS_TAG} ]; then
 
     if ! [ -z ${DOCKER_IMAGE+x} ]; then
