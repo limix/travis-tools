@@ -34,18 +34,18 @@ done
 ls wheelhouse/ || true
 ls /io/wheelhouse/ || true
 
-(shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}*-any.whl)
-(shopt -s nullglob; rm -f /io/wheelhouse/${PKG_NAME}*-any.whl)
+(shopt -s nullglob; rm -f wheelhouse/${PRJ_NAME}*-any.whl)
+(shopt -s nullglob; rm -f /io/wheelhouse/${PRJ_NAME}*-any.whl)
 
 shopt -s nullglob
-files1=(/io/wheelhouse/${PKG_NAME}*.whl)
-files2=(wheelhouse/${PKG_NAME}*.whl)
+files1=(/io/wheelhouse/${PRJ_NAME}*.whl)
+files2=(wheelhouse/${PRJ_NAME}*.whl)
 shopt -u nullglob
 
 if [ ${#files1[@]} -gt 0 ] && [ ${#files2[@]} -gt 0 ]; then
 
     # Bundle external shared libraries into the wheels
-    for whl in wheelhouse/${PKG_NAME}*.whl; do
+    for whl in wheelhouse/${PRJ_NAME}*.whl; do
         auditwheel repair "$whl" -w /io/wheelhouse/
     done
 
@@ -56,7 +56,7 @@ if [ ${#files1[@]} -gt 0 ] && [ ${#files2[@]} -gt 0 ]; then
             continue
         fi
 
-        "${PYBIN}/pip" install $PKG_NAME -f /io/wheelhouse  -q
+        "${PYBIN}/pip" install $PRJ_NAME -f /io/wheelhouse  -q
         cd "$HOME"
         /io/travis/pip-test.sh "${PYBIN}"
     done
