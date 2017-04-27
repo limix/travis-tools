@@ -55,7 +55,7 @@ if [ ${#files[@]} -gt 0 ]; then
             continue
         fi
 
-        "${PYBIN}/pip" install $PRJ_NAME -f /io/wheelhouse  -q
+        eval "${PYBIN}/pip" install "${PRJ_NAME}" -f /io/wheelhouse  -q
         cd "$HOME"
         /io/travis/pip-test.sh "${PYBIN}"
     done
