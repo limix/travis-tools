@@ -2,6 +2,7 @@
 set -e -x
 
 pushd .
+rm -rf liknorm-build || true
 git clone https://github.com/limix/liknorm.git liknorm-build
 cd liknorm-build
 mkdir build
