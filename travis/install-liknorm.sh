@@ -13,7 +13,7 @@ make test
 set +e
 sudo &> /dev/null
 err="$?"
-if [[ "$err" == "0" ]]; then
+if [[ "$err" == "1" ]]; then
     SUDO="sudo"
 else
     SUDO=""
