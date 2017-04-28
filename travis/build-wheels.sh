@@ -34,17 +34,17 @@ done
 ls wheelhouse/ || true
 ls /io/wheelhouse/ || true
 
-(shopt -s nullglob; rm -f wheelhouse/${PRJ_NAME}*-any.whl)
-(shopt -s nullglob; rm -f /io/wheelhouse/${PRJ_NAME}*-any.whl)
+(shopt -s nullglob; rm -f wheelhouse/${PRJ_NAME}-*-any.whl)
+(shopt -s nullglob; rm -f /io/wheelhouse/${PRJ_NAME}-*-any.whl)
 
 shopt -s nullglob
-files=(wheelhouse/${PRJ_NAME}*.whl)
+files=(wheelhouse/${PRJ_NAME}-*.whl)
 shopt -u nullglob
 
 if [ ${#files[@]} -gt 0 ]; then
 
     # Bundle external shared libraries into the wheels
-    for whl in wheelhouse/${PRJ_NAME}*.whl; do
+    for whl in wheelhouse/${PRJ_NAME}-*.whl; do
         auditwheel repair "$whl" -w /io/wheelhouse/
     done
 
