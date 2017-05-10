@@ -10,15 +10,15 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 
     pip install wheel setuptools cython numpy --upgrade -q
 
+    if [[ "${LIKNORM}" == "true" ]]; then
+        source travis/install-liknorm.sh
+    fi
+
     if ! [ -z "${PY_DEPS}" ]; then
         eval pip install "${PY_DEPS}" --upgrade -q
     fi
 
     source travis/install-pandoc.sh
-
-    if [[ "${LIKNORM}" == "true" ]]; then
-        source travis/install-liknorm.sh
-    fi
 else
     docker pull $DOCKER_IMAGE
 fi
