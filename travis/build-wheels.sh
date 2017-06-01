@@ -27,7 +27,7 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install setuptools cython numpy --upgrade -q
+    "${PYBIN}/pip" install setuptools cython numpy six --upgrade -q
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
