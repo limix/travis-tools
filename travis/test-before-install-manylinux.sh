@@ -17,6 +17,10 @@ if [ ! -f /root/bin/ccache ]; then
     hash -r
 fi
 
+if [ "${ZSTD}" == "true" ]; then
+    source /io/travis/install-zstd.sh
+fi
+
 if [ "${BGEN}" == "true" ]; then
     source /io/travis/install-bgen.sh
 fi

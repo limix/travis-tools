@@ -16,6 +16,7 @@ if ! [ -z ${TRAVIS_TAG} ]; then
     if ! [ -z ${DOCKER_IMAGE+x} ]; then
         docker run -e PYPI_PASSWORD=${PYPI_PASSWORD} -e PKG_NAME=${PKG_NAME} \
         -e LIKNORM="${LIKNORM}" -e PY_DEPS="${PY_DEPS}" \
+        -e ZSTD="${ZSTD}" \
         -e BGEN="${BGEN}" -e PRJ_NAME="${PRJ_NAME}" --rm -v \
         `pwd`:/io $DOCKER_IMAGE /bin/bash
 

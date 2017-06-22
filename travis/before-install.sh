@@ -10,6 +10,10 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 
     pip install wheel setuptools cython numpy --upgrade -q
 
+    if [[ "${ZSTD}" == "true" ]]; then
+        source travis/install-zstd.sh
+    fi
+
     if [[ "${BGEN}" == "true" ]]; then
         source travis/install-bgen.sh
     fi

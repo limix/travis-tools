@@ -22,6 +22,8 @@ curl -O ${URL_PREFIX}/install-liknorm.sh
 chmod +x install-liknorm.sh
 curl -O ${URL_PREFIX}/install-pandoc.sh
 chmod +x install-pandoc.sh
+curl -O ${URL_PREFIX}/install-zstd.sh
+chmod +x install-zstd.sh
 curl -O ${URL_PREFIX}/prepare-for-osx.sh
 chmod +x prepare-for-osx.sh
 curl -O ${URL_PREFIX}/script.sh

@@ -19,5 +19,6 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 else
     docker run -e PKG_NAME=${PKG_NAME} -e PY_DEPS="${PY_DEPS}" \
         -e LIKNORM="${LIKNORM}" -e PRJ_NAME="${PRJ_NAME}" \
+        -e BGEN="${BGEN}" -e ZSTD="${ZSTD}" \
         --rm -v `pwd`:/io $DOCKER_IMAGE /io/travis/build-wheels.sh
 fi
