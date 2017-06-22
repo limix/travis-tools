@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e -x
 
+if ! [ -z "${DONT_RELEASE_WHEEL+x}" ]; then
+    if [ "${DONT_RELEASE_WHEEL}" == "true" ]; then
+        exit 0
+    fi
+fi
+
 if [ -z "${PRJ_NAME}" ]; then
     export PRJ_NAME="${PKG_NAME}"
 fi
