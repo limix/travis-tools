@@ -10,6 +10,10 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
 
     pip install wheel setuptools cython numpy --upgrade -q
 
+    if [[ "${BGEN}" == "true" ]]; then
+        source travis/install-bgen.sh
+    fi
+
     if [[ "${LIKNORM}" == "true" ]]; then
         source travis/install-liknorm.sh
     fi

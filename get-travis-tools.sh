@@ -12,6 +12,8 @@ curl -O ${URL_PREFIX}/before-install.sh
 chmod +x before-install.sh
 curl -O ${URL_PREFIX}/build-wheels.sh
 chmod +x build-wheels.sh
+curl -O ${URL_PREFIX}/install-bgen.sh
+chmod +x install-bgen.sh
 curl -O ${URL_PREFIX}/install-clang38.sh
 chmod +x install-clang38.sh
 curl -O ${URL_PREFIX}/install-llvmlite.sh

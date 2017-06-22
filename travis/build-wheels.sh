@@ -17,6 +17,10 @@ if [ ! -f /root/bin/ccache ]; then
     hash -r
 fi
 
+if [ "${BGEN}" == "true" ]; then
+    source /io/travis/install-bgen.sh
+fi
+
 if [ "${LIKNORM}" == "true" ]; then
     source /io/travis/install-liknorm.sh
 fi
@@ -24,7 +28,7 @@ fi
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] || \
-       [[ $PYBIN == *"p34"* ]]; then
+    [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
     "${PYBIN}/pip" install setuptools cython numpy --upgrade -q
@@ -51,7 +55,7 @@ if [ ${#files[@]} -gt 0 ]; then
     # Install and test packages
     for PYBIN in /opt/python/*/bin/; do
         if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] \
-            || [[ $PYBIN == *"p34"* ]]; then
+        || [[ $PYBIN == *"p34"* ]]; then
             continue
         fi
 

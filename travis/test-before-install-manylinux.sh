@@ -17,6 +17,10 @@ if [ ! -f /root/bin/ccache ]; then
     hash -r
 fi
 
+if [ "${BGEN}" == "true" ]; then
+    source /io/travis/install-bgen.sh
+fi
+
 if [ "${LIKNORM}" == "true" ]; then
     source /io/travis/install-liknorm.sh
 fi
