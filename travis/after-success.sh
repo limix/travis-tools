@@ -20,7 +20,7 @@ if ! [ -z ${TRAVIS_TAG} ]; then
         -e BGEN="${BGEN}" -e PRJ_NAME="${PRJ_NAME}" --rm -v \
         `pwd`:/io $DOCKER_IMAGE /bin/bash
 
-        pip install setuptools twine numpy cython pytest --upgrade -q
+        pip install setuptools twine numpy cython pytest pytest-pep8 --upgrade -q
 
         twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/${PRJ_NAME}*.whl \
         -u dhorta -p ${PYPI_PASSWORD} || true
@@ -28,7 +28,7 @@ if ! [ -z ${TRAVIS_TAG} ]; then
         if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
             source ~/.venv/bin/activate
-            pip install setuptools twine numpy cython pytest --upgrade -q
+            pip install setuptools twine numpy cython pytest pytest-pep8 --upgrade -q
 
             twine upload ${TRAVIS_BUILD_DIR}/dist/${PRJ_NAME}*.whl \
             -u dhorta -p ${PYPI_PASSWORD} || true
