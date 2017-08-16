@@ -17,7 +17,6 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
         python setup.py bdist_wheel
         pip install dist/`ls dist | grep -i -E '\.(whl)$' | head -1`;
     fi
-    travis/pip-test.sh ""
 else
     docker run -e PKG_NAME=${PKG_NAME} \
         -e LIKNORM="${LIKNORM}" -e PRJ_NAME="${PRJ_NAME}" \

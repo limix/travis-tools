@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e -x
+
+if [ -z ${DOCKER_IMAGE+x} ]; then
+    travis/pip-test.sh ""
+else
+    exit 0
+fi
