@@ -32,7 +32,7 @@ fi
 for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN == *"p36"* ]]; then
         "${PYBIN}/pip" install setuptools --upgrade -q
-        "${PYBIN}/pip" install -U -r requirements.txt -r test-requirements.txt
+        "${PYBIN}/pip" install -U -r /io/requirements.txt -r /io/test-requirements.txt
         pushd /io
         "${PYBIN}/python" setup.py test
         popd
