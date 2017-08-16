@@ -8,7 +8,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
         source travis/prepare-for-osx.sh
     fi
 
-    pip install wheel setuptools cython numpy --upgrade -q
+    pip install wheel setuptools --upgrade -q
 
     if [[ "${ZSTD}" == "true" ]]; then
         source travis/install-zstd.sh
@@ -21,12 +21,6 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
     if [[ "${LIKNORM}" == "true" ]]; then
         source travis/install-liknorm.sh
     fi
-
-    if ! [ -z "${PY_DEPS}" ]; then
-        eval pip install "${PY_DEPS}" --upgrade -q
-    fi
-
-    source travis/install-pandoc.sh
 else
     docker pull $DOCKER_IMAGE
 fi
