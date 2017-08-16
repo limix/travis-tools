@@ -36,7 +36,7 @@ for PYBIN in /opt/python/*/bin; do
         continue
     fi
     "${PYBIN}/pip" install setuptools --upgrade -q
-    "${PYBIN}/pip" pip install -U -r /io/requirements.txt -r /io/test-requirements.txt
+    "${PYBIN}/pip" install -U -r /io/requirements.txt -r /io/test-requirements.txt
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
