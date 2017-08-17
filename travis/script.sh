@@ -15,7 +15,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
         source ~/.venv/bin/activate
     fi
 
-    travis/util/pip-test.sh ""
+    travis/util/pip-test.sh $(dirname $(which python))
 fi
 
 set +x

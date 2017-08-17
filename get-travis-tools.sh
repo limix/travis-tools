@@ -35,5 +35,6 @@ for f in $files
 do
     get_script $f &
 done
+wait
 
 popd
