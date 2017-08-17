@@ -18,15 +18,15 @@ if [ ! -f /root/bin/ccache ]; then
 fi
 
 if [ "${ZSTD}" == "true" ]; then
-    source /io/travis/install-zstd.sh
+    source /io/travis/util/install-zstd.sh
 fi
 
 if [ "${BGEN}" == "true" ]; then
-    source /io/travis/install-bgen.sh
+    source /io/travis/util/install-bgen.sh
 fi
 
 if [ "${LIKNORM}" == "true" ]; then
-    source /io/travis/install-liknorm.sh
+    source /io/travis/util/install-liknorm.sh
 fi
 
 # Compile wheels
@@ -66,7 +66,7 @@ if [ ${#files[@]} -gt 0 ]; then
 
         eval "${PYBIN}/pip" install "${PRJ_NAME}" -f /io/wheelhouse  -q
         cd "$HOME"
-        /io/travis/pip-test.sh "${PYBIN}"
+        /io/travis/util/pip-test.sh "${PYBIN}"
     done
 
 fi

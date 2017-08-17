@@ -1,28 +1,48 @@
 #!/bin/bash
-set -e -x
+set -e
+
+echo "
+000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000 BEFORE INSTALL BEGIN 0000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000
+"
+set -x
 
 mkdir -p $HOME/.download
+echo "
+PKG_NAME=${PKG_NAME}
+PRJ_NAME=${PRJ_NAME}
+BGEN=${BGEN}
+LIKNORM=${LIKNORM}
+ZSTD=${ZSTD}
+" > ~/env.list
 
-if [ -z ${DOCKER_IMAGE+x} ]; then
-    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        source travis/prepare-for-osx.sh
-    fi
+DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
 
-    pip install wheel setuptools --upgrade -q
+if [ "$DOCK" = true ]; then
 
-    if [[ "${ZSTD}" == "true" ]]; then
-        source travis/install-zstd.sh
-    fi
-
-    if [[ "${BGEN}" == "true" ]]; then
-        source travis/install-bgen.sh
-    fi
-
-    if [[ "${LIKNORM}" == "true" ]]; then
-        source travis/install-liknorm.sh
-    fi
-else
     docker pull $DOCKER_IMAGE
+    CMD=/io/travis/before-install-manylinux.sh
+    docker run --env-file ~/env.list --rm -v `pwd`:/io $DOCKER_IMAGE $CMD
+
+else
+
+    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+        source travis/util/prepare-for-osx.sh
+    fi
+
+    source travis/util/install-py-deps.sh $(dirname $(which python))
+    source travis/util/install-deps.sh
+    pip install -U -r requirements.txt -r test-requirements.txt
+    python setup.py test
+    rstcheck README.rst
+
 fi
 
-travis/test-before-install.sh
+set +x
+
+echo "
+000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000000000000000000000000 BEFORE INSTALL END 00000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000
+"

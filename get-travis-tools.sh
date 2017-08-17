@@ -16,17 +16,19 @@ function get_script
 
 files="
 after-success.sh
+before-install-manylinux.sh
 before-install.sh
 install.sh
 script.sh
 util/build-wheels.sh
 util/install-bgen.sh
+util/install-deps.sh
 util/install-liknorm.sh
+util/install-manylinux-deps.sh
+util/install-py-deps.sh
 util/install-zstd.sh
-util/prepare-for-osx.sh
 util/pip-test.sh
-util/test-before-install.sh
-util/test-before-install-manylinux.sh
+util/prepare-for-osx.sh
 "
 
 for f in $files
