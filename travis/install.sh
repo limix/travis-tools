@@ -20,12 +20,15 @@ else
     if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
         pip install -U -r requirements.txt -r test-requirements.txt
         python setup.py sdist
-        pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`;
+        filename="$(ls dist | grep -i -E '\.(gz)$' | head -1)"
+        tar -ztvf dist/$filename | grep LICENSE
+        pip install dist/$filename
     else
         source ~/.venv/bin/activate
         pip install -U -r requirements.txt -r test-requirements.txt
         python setup.py bdist_wheel
-        pip install dist/`ls dist | grep -i -E '\.(whl)$' | head -1`;
+        filename="$(ls dist | grep -i -E '\.(gz)$' | head -1)"
+        pip install dist/$filename
     fi
 
 fi
