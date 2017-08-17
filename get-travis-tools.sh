@@ -21,6 +21,7 @@ before-install.sh
 install.sh
 script.sh
 util/build-wheels.sh
+util/define-names.sh
 util/install-bgen.sh
 util/install-deps.sh
 util/install-liknorm.sh
