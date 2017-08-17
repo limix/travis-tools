@@ -1,44 +1,35 @@
 #!/bin/bash
 set -e
 
-mkdir -p travis
+mkdir -p travis/util
 
 URL_PREFIX=https://raw.githubusercontent.com/limix/travis-tools/master/travis/
 
 pushd travis
-curl -O ${URL_PREFIX}/after-success.sh
-chmod +x after-success.sh
 
-curl -O ${URL_PREFIX}/before-install.sh
-chmod +x before-install.sh
+function get_script
+{
+        urlpath="$1"
+        curl "$URL_PREFIX/$urlpath > $urlpath"
+        chmod +x "$urlpath"
+}
 
-curl -O ${URL_PREFIX}/build-wheels.sh
-chmod +x build-wheels.sh
+files="
+after-success.sh
+before-install.sh
+install.sh
+script.sh
+util/build-wheels.sh
+util/install-bgen.sh
+util/install-liknorm.sh
+util/install-zstd.sh
+util/prepare-for-osx.sh
+util/pip-test.sh
+util/test-before-install.sh
+util/test-before-install-manylinux.sh
+"
 
-curl -O ${URL_PREFIX}/install-bgen.sh
-chmod +x install-bgen.sh
-
-curl -O ${URL_PREFIX}/install-liknorm.sh
-chmod +x install-liknorm.sh
-
-curl -O ${URL_PREFIX}/install-zstd.sh
-chmod +x install-zstd.sh
-
-curl -O ${URL_PREFIX}/prepare-for-osx.sh
-chmod +x prepare-for-osx.sh
-
-curl -O ${URL_PREFIX}/install.sh
-chmod +x install.sh
-
-curl -O ${URL_PREFIX}/pip-test.sh
-chmod +x pip-test.sh
-
-curl -O ${URL_PREFIX}/script.sh
-chmod +x script.sh
-
-curl -O ${URL_PREFIX}/test-before-install.sh
-chmod +x test-before-install.sh
-
-curl -O ${URL_PREFIX}/test-before-install-manylinux.sh
-chmod +x test-before-install-manylinux.sh
-popd
+for f in $files
+do
+    get_script $f &
+done
