@@ -9,19 +9,8 @@ echo "
 
 mkdir -p $HOME/.download
 
-if [ -z "${PRJ_NAME}" ]; then
-    export PRJ_NAME="${PKG_NAME}"
-fi
-
 set -x
-
-echo "
-PKG_NAME=${PKG_NAME}
-PRJ_NAME=${PRJ_NAME}
-BGEN=${BGEN}
-LIKNORM=${LIKNORM}
-ZSTD=${ZSTD}
-" > ~/env.list
+source travis/util/define-names.sh
 
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
 
