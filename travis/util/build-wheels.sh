@@ -13,10 +13,8 @@ for F in $FOLDERS; do
 done
 
 ls wheelhouse/ || true
-ls /io/wheelhouse/ || true
 
 (shopt -s nullglob; rm -f wheelhouse/${PRJ_NAME}-*-any.whl)
-(shopt -s nullglob; rm -f /io/wheelhouse/${PRJ_NAME}-*-any.whl)
 
 shopt -s nullglob
 files=(wheelhouse/${PRJ_NAME}-*.whl)
