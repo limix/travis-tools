@@ -7,18 +7,18 @@ echo "
 222222222222222222222222222222222222222222222222222222222222222222222222222222
 "
 
-set -x
+DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
 
-if [ -z ${DOCKER_IMAGE+x} ]; then
+if [ "$DOCK" = true ]; then
 
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         source ~/.venv/bin/activate
     fi
 
+    set -x
     travis/util/pip-test.sh $(dirname $(which python))
+    set +x
 fi
-
-set +x
 
 echo "
 222222222222222222222222222222222222222222222222222222222222222222222222222222

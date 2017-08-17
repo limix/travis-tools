@@ -7,9 +7,9 @@ echo "
 111111111111111111111111111111111111111111111111111111111111111111111111111111
 "
 
-set -x
-
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
+
+set -x
 
 if [ "$DOCK" = true ]; then
 

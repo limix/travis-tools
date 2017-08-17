@@ -1,43 +1,15 @@
 #!/bin/bash
-set -e -x
+set -e
 
-yum install -y atlas-devel libffi libffi-devel ccache cmake zlib zlib-devel
+source /io/travis/util/install-manylinux-deps.sh
+source /io/travis/util/install-deps.sh
 
-if [ ! -f /root/bin/ccache ]; then
-    mkdir /root/bin
-    export PATH=/root/bin:$PATH
+FOLDERS="$(echo /opt/python/*p27*/bin) $(echo /opt/python/*p36*/bin)"
 
-    cp /usr/bin/ccache /root/bin/
-
-    ln -s ccache /root/bin/gcc
-    ln -s ccache /root/bin/g++
-    ln -s ccache /root/bin/cc
-    ln -s ccache /root/bin/c++
-
-    hash -r
-fi
-
-if [ "${ZSTD}" == "true" ]; then
-    source /io/travis/util/install-zstd.sh
-fi
-
-if [ "${BGEN}" == "true" ]; then
-    source /io/travis/util/install-bgen.sh
-fi
-
-if [ "${LIKNORM}" == "true" ]; then
-    source /io/travis/util/install-liknorm.sh
-fi
-
-# Compile wheels
-for PYBIN in /opt/python/*/bin; do
-    if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] || \
-    [[ $PYBIN == *"p34"* ]]; then
-        continue
-    fi
-    "${PYBIN}/pip" install setuptools --upgrade -q
-    "${PYBIN}/pip" install -U -r /io/requirements.txt -r /io/test-requirements.txt
-    "${PYBIN}/pip" wheel /io/ -w wheelhouse/
+for F in $FOLDERS; do
+    $F/pip install setuptools --upgrade -q
+    $F/pip install -U -r /io/requirements.txt -r /io/test-requirements.txt
+    $F/pip wheel /io/ -w wheelhouse/
 done
 
 ls wheelhouse/ || true
@@ -58,15 +30,10 @@ if [ ${#files[@]} -gt 0 ]; then
     done
 
     # Install and test packages
-    for PYBIN in /opt/python/*/bin/; do
-        if [[ $PYBIN == *"p26"* ]] || [[ $PYBIN == *"p33"* ]] \
-        || [[ $PYBIN == *"p34"* ]]; then
-            continue
-        fi
-
-        eval "${PYBIN}/pip" install "${PRJ_NAME}" -f /io/wheelhouse  -q
+    for F in $FOLDERS; do
+        $F/pip install ${PRJ_NAME} -f /io/wheelhouse  -q
         cd "$HOME"
-        /io/travis/util/pip-test.sh "${PYBIN}"
+        /io/travis/util/pip-test.sh $F
     done
 
 fi
