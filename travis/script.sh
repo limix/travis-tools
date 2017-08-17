@@ -8,6 +8,7 @@ echo "
 "
 
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
+source travis/util/define-names.sh
 
 if [ "$DOCK" = true ]; then
 
