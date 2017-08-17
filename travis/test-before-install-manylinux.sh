@@ -35,6 +35,7 @@ for PYBIN in /opt/python/*/bin; do
         "${PYBIN}/pip" install -U -r /io/requirements.txt -r /io/test-requirements.txt
         pushd /io
         "${PYBIN}/python" setup.py test
+        "${PYBIN}/python" setup.py checkdocs
         popd
     fi
 done
