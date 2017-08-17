@@ -1,11 +1,13 @@
 #!/bin/bash
-set -e -x
+set -e
 
-brew update > /dev/null
+# brew update > /dev/null
 
-brew install libffi > /dev/null
+if [ "$LIBFFI" = true ]; then
+    brew install libffi > /dev/null
+fi
 
-if [ "$HDF5" == "true" ]; then
+if [ "$HDF5" = true ]; then
     brew install homebrew/science/hdf5 > /dev/null
 fi
 
@@ -24,13 +26,9 @@ case "${PYENV}" in
             python "$getbin" --user
         fi
         ;;
-    py35)
-        pyenv install 3.5.2
-        pyenv global 3.5.2
-        ;;
     py36)
-        pyenv install 3.6.0
-        pyenv global 3.6.0
+        pyenv install 3.6.2
+        pyenv global 3.6.2
         ;;
 esac
 pyenv rehash
@@ -39,6 +37,5 @@ python -m pip install --user virtualenv
 python -m virtualenv ~/.venv
 source ~/.venv/bin/activate
 
-# matplotlib does not like travis osx
 mkdir -p ~/.matplotlib
 echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
