@@ -10,7 +10,7 @@ pushd travis
 function get_script
 {
         urlpath="$1"
-        curl "$URL_PREFIX/$urlpath > $urlpath"
+        curl -s "$URL_PREFIX/$urlpath" > "$urlpath"
         chmod +x "$urlpath"
 }
 
@@ -33,3 +33,5 @@ for f in $files
 do
     get_script $f &
 done
+
+popd
