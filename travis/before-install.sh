@@ -9,6 +9,11 @@ echo "
 set -x
 
 mkdir -p $HOME/.download
+
+if [ -z "${PRJ_NAME}" ]; then
+    export PRJ_NAME="${PKG_NAME}"
+fi
+
 echo "
 PKG_NAME=${PKG_NAME}
 PRJ_NAME=${PRJ_NAME}

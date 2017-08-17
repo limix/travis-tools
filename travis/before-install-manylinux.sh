@@ -3,7 +3,7 @@ set -e
 
 source /io/travis/util/install-manylinux-deps.sh
 source /io/travis/util/install-deps.sh
-FOLDERS="$(echo /opt/python/*p27*/bin) $(echo /opt/python/*py36*/bin)"
+FOLDERS="$(echo /opt/python/*p27*/bin) $(echo /opt/python/*p36*/bin)"
 
 for F in $FOLDERS; do
     source /io/travis/util/install-py-deps.sh $F

@@ -9,12 +9,13 @@ echo "
 
 set -x
 
-if [ -z "${PRJ_NAME}" ]; then
-    export PRJ_NAME="${PKG_NAME}"
-fi
+DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
 
-if [ -z ${DOCKER_IMAGE+x} ]; then
+if [ "$DOCK" = true ]; then
 
+    CMD=/io/travis/util/build-wheels.sh
+    docker run --env-file ~/env.list --rm -v `pwd`:/io $DOCKER_IMAGE $CMD
+else
     if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
         pip install -U -r requirements.txt -r test-requirements.txt
         python setup.py sdist
@@ -25,11 +26,7 @@ if [ -z ${DOCKER_IMAGE+x} ]; then
         python setup.py bdist_wheel
         pip install dist/`ls dist | grep -i -E '\.(whl)$' | head -1`;
     fi
-else
-    docker run -e PKG_NAME=${PKG_NAME} \
-        -e LIKNORM="${LIKNORM}" -e PRJ_NAME="${PRJ_NAME}" \
-        -e BGEN="${BGEN}" -e ZSTD="${ZSTD}" \
-        --rm -v `pwd`:/io $DOCKER_IMAGE /io/travis/util/build-wheels.sh
+
 fi
 
 set +x
