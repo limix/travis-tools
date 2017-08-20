@@ -1,9 +1,11 @@
 #!/bin/bash
 
 set -e
+set -x
 
 pushd /
 pwd
+touch test_this.py
 echo "
 import sys
 import ${PKG_NAME}
