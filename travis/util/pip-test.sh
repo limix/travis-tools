@@ -1,5 +1,17 @@
 #!/bin/bash
 
+set -e
+
 pushd /
-$1/python -c "import sys; import ${PKG_NAME}; sys.exit(${PKG_NAME}.test())"
+echo "
+import sys
+import ${PKG_NAME}
+code = ${PKG_NAME}.test()
+sys.exit(code)
+" > test_this.py
+
+$1/python test_this.py
+
+rm test_this.py
+
 popd
