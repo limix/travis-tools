@@ -14,22 +14,22 @@ done
 
 ls wheelhouse/ || true
 
-(shopt -s nullglob; rm -f wheelhouse/${PRJ_NAME}-*-any.whl)
+(shopt -s nullglob; rm -f wheelhouse/${PKG_NAME}-*-any.whl)
 
 shopt -s nullglob
-files=(wheelhouse/${PRJ_NAME}-*.whl)
+files=(wheelhouse/${PKG_NAME}-*.whl)
 shopt -u nullglob
 
 if [ ${#files[@]} -gt 0 ]; then
 
     # Bundle external shared libraries into the wheels
-    for whl in wheelhouse/${PRJ_NAME}-*.whl; do
+    for whl in wheelhouse/${PKG_NAME}-*.whl; do
         auditwheel repair "$whl" -w /io/wheelhouse/
     done
 
     # Install and test packages
     for F in $FOLDERS; do
-        $F/pip install ${PRJ_NAME} -f /io/wheelhouse  -q
+        $F/pip install ${PKG_NAME} -f /io/wheelhouse  -q
         cd "$HOME"
         /io/travis/util/pip-test.sh $F
     done
