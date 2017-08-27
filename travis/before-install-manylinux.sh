@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-source /io/travis/util/install-manylinux-deps.sh
-source /io/travis/util/install-deps.sh
+pushd /io
+source travis/util/install-manylinux-deps.sh
+source travis/util/install-deps.sh
+popd
+
 FOLDERS="$(echo /opt/python/*p27*/bin) $(echo /opt/python/*p36*/bin)"
 
 for F in $FOLDERS; do
