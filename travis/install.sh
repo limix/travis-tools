@@ -2,9 +2,9 @@
 set -e
 
 echo "
-111111111111111111111111111111111111111111111111111111111111111111111111111111
-11111111111111111111111111111111 INSTALL BEGIN 1111111111111111111111111111111
-111111111111111111111111111111111111111111111111111111111111111111111111111111
+##############################################################################
+################################ INSTALL BEGIN ###############################
+##############################################################################
 "
 
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
@@ -20,14 +20,14 @@ else
     if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
         pip install -U -r requirements.txt -r test-requirements.txt
         python setup.py sdist
-        filename="$(ls dist | grep -i -E '\.(gz)$' | head -1)"
+        filename="$(ls dist | grep -i -E '\.(gz)$' | head -#)"
         tar -ztvf dist/$filename | grep LICENSE
         pip install dist/$filename
     else
         source ~/.venv/bin/activate
         pip install -U -r requirements.txt -r test-requirements.txt
         python setup.py bdist_wheel
-        filename="$(ls dist | grep -i -E '\.(whl)$' | head -1)"
+        filename="$(ls dist | grep -i -E '\.(whl)$' | head -#)"
         pip install dist/$filename
     fi
 
@@ -36,7 +36,7 @@ fi
 set +x
 
 echo "
-111111111111111111111111111111111111111111111111111111111111111111111111111111
-111111111111111111111111111111111 INSTALL END 11111111111111111111111111111111
-111111111111111111111111111111111111111111111111111111111111111111111111111111
+##############################################################################
+################################# INSTALL END ################################
+##############################################################################
 "
