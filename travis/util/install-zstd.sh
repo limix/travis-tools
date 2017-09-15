@@ -2,9 +2,16 @@
 set -e -x
 
 pushd .
+
+rm -f v1.3.1.tar.gz || true
+rm -rf zstd-1.3.1 || true
 rm -rf zstd-build || true
-git clone https://github.com/facebook/zstd.git zstd-build
+
+wget https://github.com/facebook/zstd/archive/v1.3.1.tar.gz
+tar xzf v1.3.1.tar.gz
+mv zstd-1.3.1 zstd-build
 cd zstd-build
+
 make
 
 set +e
@@ -22,4 +29,5 @@ if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
     eval "$SUDO" ldconfig
 fi
 popd
+
 rm -rf zstd-build || true
