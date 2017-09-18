@@ -3,9 +3,9 @@ set -e -x
 
 pushd .
 rm -rf hcephes-build || true
-wget https://github.com/limix/hcephes/archive/0.1.3.tar.gz
-tar xzf 0.1.3.tar.gz
-mv hcephes-0.1.3 hcephes-build
+wget https://github.com/limix/hcephes/archive/0.1.5.tar.gz
+tar xzf 0.1.5.tar.gz
+mv hcephes-0.1.5 hcephes-build
 cd hcephes-build
 mkdir build
 cd build
