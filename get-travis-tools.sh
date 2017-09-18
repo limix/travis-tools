@@ -25,6 +25,7 @@ util/define-names.sh
 util/install-bgen.sh
 util/install-deps.sh
 util/install-liknorm.sh
+util/install-hcephes.sh
 util/install-manylinux-deps.sh
 util/install-py-deps.sh
 util/install-zstd.sh

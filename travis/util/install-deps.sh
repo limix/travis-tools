@@ -11,3 +11,7 @@ fi
 if [ "$LIKNORM" = true ]; then
     source travis/util/install-liknorm.sh
 fi
+
+if [ "$HCEPHES" = true ]; then
+    source travis/util/install-hcephes.sh
+fi
