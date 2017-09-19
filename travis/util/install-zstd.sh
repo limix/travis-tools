@@ -1,33 +1,3 @@
 #!/bin/bash
-set -e -x
 
-pushd .
-
-rm -f v1.3.1.tar.gz || true
-rm -rf zstd-1.3.1 || true
-rm -rf zstd-build || true
-
-wget https://github.com/facebook/zstd/archive/v1.3.1.tar.gz
-tar xzf v1.3.1.tar.gz
-mv zstd-1.3.1 zstd-build
-cd zstd-build
-
-make
-
-set +e
-sudo &> /dev/null
-err="$?"
-if [[ "$err" == "1" ]]; then
-    SUDO="sudo"
-else
-    SUDO=""
-fi
-set -e
-
-eval "$SUDO" make install
-if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
-    eval "$SUDO" ldconfig
-fi
-popd
-
-rm -rf zstd-build || true
+bash <(curl -fsSL https://gist.githubusercontent.com/Horta/ed6baba1bf2626274141dc9c955ae58f/raw/6a84f5cad8de19c797f9db4f46d72f145c1381bb/install-zstd)
