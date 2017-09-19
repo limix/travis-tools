@@ -9,7 +9,6 @@ echo "
 
 mkdir -p $HOME/.download
 
-set -x
 source travis/util/define-names.sh
 
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
@@ -33,8 +32,6 @@ else
     rstcheck README.rst
 
 fi
-
-set +x
 
 echo "
 ##############################################################################

@@ -16,9 +16,7 @@ if [ "$DOCK" = false ]; then
         source ~/.venv/bin/activate
     fi
 
-    set -x
     travis/util/pip-test.sh $(dirname $(which python))
-    set +x
 fi
 
 echo "

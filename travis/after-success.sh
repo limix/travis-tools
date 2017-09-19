@@ -9,8 +9,6 @@ echo "
 
 DOCK=true && [[ -z "${DOCKER_IMAGE+x}" ]] && DOCK=false || true
 
-set -x
-
 echo "(AFTER_SUCCESS) Defining names."
 source travis/util/define-names.sh
 
@@ -38,7 +36,7 @@ if ! [ -z ${TRAVIS_TAG} ]; then
     else
         if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
-            
+
             echo "(AFTER_SUCCESS) Activate Python environment and upload ${PKG_NAME} wheels."
             source ~/.venv/bin/activate
             pip install twine --upgrade -q
@@ -48,8 +46,6 @@ if ! [ -z ${TRAVIS_TAG} ]; then
         fi
     fi
 fi
-
-set +x
 
 echo "
 ##############################################################################
