@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source <(curl -s https://raw.githubusercontent.com/limix/hcephes/master/install)
+bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
