@@ -30,7 +30,9 @@ else
     pip install -U -r requirements.txt -r test-requirements.txt
     python setup.py test
     rstcheck README.rst
-
+    if [ -d doc ]; then
+        cd doc && make doctest && cd ..
+    fi
 fi
 
 echo "
